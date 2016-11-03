@@ -6,33 +6,39 @@
 
 #include "dragon.h"
 
-class Hero: public Unit
-{
+class Hero: public Unit {
     int scores;
 public:
     static const int default_health = 100;
     static const int default_attackForce = 20;
 
     Hero(int health = default_health, int aForce = default_attackForce)
-        :Unit(health, aForce), scores(0)
-    {}
-    void attack (Dragon &drago)
-    {
+            : Unit(health, aForce), scores(0) { }
+
+    void attack(Dragon &drago) {
         std::string q = drago.generateQuestion();
         std::cout << "question: " << q;
         int answer;
         std::cin >> answer;
-        if (drago.checkAnswer(answer))
-        {
+        if (drago.checkAnswer(answer)) {
             drago.getDamage(attackForce);
             std::cout << "Hit you, dragon!" << std::endl;
         }
-        else
-        {
+        else {
             getDamage(drago.attackForce);
             std::cout << "Hero suffers..." << std::endl;
         }
     }
+
+    int getScores()
+    {
+        return scores;
+    }
+    void addScores(int a)
+    {
+        scores=scores+a;
+    }
 };
+
 
 #endif // HERO_H_INCLUDED
